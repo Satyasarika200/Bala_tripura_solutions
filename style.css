@@ -790,7 +790,7 @@ button, input, textarea, select {
   display: block;
 }
 
-.about__image-content h3 {
+.about__image-content .about__image-heading {
   font-family: var(--font-display);
   font-size: 1.4rem;
   color: #fff;
@@ -1137,14 +1137,27 @@ button, input, textarea, select {
 /* ===== CONTACT ===== */
 .contact__content {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
   gap: 40px;
+  align-items: start;
 }
 
 .contact__info {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  min-width: 0;
+}
+
+.contact__map-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.contact__map.map__wrapper {
+  margin-top: 0;
 }
 
 .contact__info-card {
@@ -1176,7 +1189,7 @@ button, input, textarea, select {
   flex-shrink: 0;
 }
 
-.contact__info-text h4 {
+.contact__info-text h3 {
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 600;
@@ -1206,7 +1219,7 @@ button, input, textarea, select {
   border-radius: var(--radius-lg);
 }
 
-.contact__hours h4 {
+.contact__hours h3 {
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 600;
@@ -1236,6 +1249,27 @@ button, input, textarea, select {
 .contact__hours-item .time {
   color: var(--accent-400);
   font-weight: 500;
+}
+
+.contact__business-identifiers {
+  display: grid;
+  gap: 10px;
+}
+
+.contact__business-identifiers > div {
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr);
+  gap: 12px;
+  font-size: 0.9rem;
+}
+
+.contact__business-identifiers dt {
+  color: var(--neutral-300);
+}
+
+.contact__business-identifiers dd {
+  color: var(--accent-400);
+  overflow-wrap: anywhere;
 }
 
 /* Contact Form */
@@ -1580,12 +1614,23 @@ button, input, textarea, select {
     margin: 0 auto;
   }
 
-  .contact__content {
-    grid-template-columns: 1fr;
-  }
-
   .footer__grid {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .contact__content {
+    gap: 24px;
+  }
+
+  .contact__info-card,
+  .contact__hours {
+    padding: 20px;
+  }
+
+  .contact__map.map__wrapper {
+    height: 360px;
   }
 }
 
@@ -1630,6 +1675,34 @@ button, input, textarea, select {
 
   .navbar__toggle {
     display: flex;
+  }
+
+  .contact__content {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "location"
+      "phone"
+      "email"
+      "map"
+      "business"
+      "hours";
+    gap: 24px;
+  }
+
+  .contact__info,
+  .contact__map-column {
+    display: contents;
+  }
+
+  .contact__phone { grid-area: phone; }
+  .contact__email { grid-area: email; }
+  .contact__map { grid-area: map; }
+  .contact__business-info { grid-area: business; }
+  .contact__business-hours { grid-area: hours; }
+  .contact__location { grid-area: location; }
+
+  .contact__map.map__wrapper {
+    height: 300px;
   }
 
   .hero__stats {

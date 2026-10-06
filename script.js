@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   toggle.addEventListener('click', () => {
     toggle.classList.toggle('active');
     navLinks.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(navLinks.classList.contains('open')));
     document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
   });
 
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', () => {
       toggle.classList.remove('active');
       navLinks.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     });
   });
